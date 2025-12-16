@@ -6,10 +6,13 @@ use App\Livewire\Settings\Profile;
 use App\Livewire\Settings\TwoFactor;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
+use App\Http\Controllers\HomepageController;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\ProductController;
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+Route::get('/', [HomepageController::class, 'index'])->name('home');
+Route::get('/blogs', [BlogController::class, 'index'])->name('blogs');
+Route::get('/products', [ProductController::class, 'index'])->name('products');
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
