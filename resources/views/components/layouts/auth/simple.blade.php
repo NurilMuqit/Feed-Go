@@ -3,20 +3,28 @@
     <head>
         @include('partials.head')
     </head>
-    <body class="min-h-screen bg-white antialiased dark:bg-linear-to-b dark:from-neutral-950 dark:to-neutral-900">
-        <div class="bg-background flex min-h-svh flex-col items-center justify-center gap-6 p-6 md:p-10">
-            <div class="flex w-full max-w-sm flex-col gap-2">
-                <a href="{{ route('home') }}" class="flex flex-col items-center gap-2 font-medium" wire:navigate>
-                    <span class="flex h-9 w-9 mb-1 items-center justify-center rounded-md">
-                        <x-app-logo-icon class="size-9 fill-current text-black dark:text-white" />
-                    </span>
-                    <span class="sr-only">{{ config('app.name', 'Laravel') }}</span>
-                </a>
-                <div class="flex flex-col gap-6">
-                    {{ $slot }}
-                </div>
+    <body class="min-h-screen antialiased bg-[radial-gradient(circle_at_35%_30%,#2E7D32_8%,#084A0B_75%)] ">
+        <div class="relative flex items-center mb-6 p-5">
+        
+            {{-- logo --}}
+            <div class="text-2xl font-bold text-green-300 px-6">
+                <img src="{{ asset('images/FeedGo.png') }}" alt="Feed-Go" class="h-12 inline-block mr-2" />
             </div>
+        
+            {{-- navbar --}}
+            <nav class=" text-lg hidden md:flex gap-8 text-white absolute left-1/2 transform -translate-x-1/2">
+                <a href="{{ route('beranda') }}" class="hover:text-yellow-300">Beranda</a>
+                <a href="{{ route('produk') }}" class="hover:text-yellow-300">Produk</a>
+                <a href="{{ route('tentangkami') }}" class="hover:text-yellow-300">Tentang Kami</a>
+                <a href="{{ route('artikel') }}" class="hover:text-yellow-300">Artikel</a>
+            </nav>
+        
         </div>
+
+        <div class="">
+            {{ $slot }}
+        </div>
+        
         @fluxScripts
     </body>
 </html>

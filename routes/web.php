@@ -9,10 +9,12 @@ use Laravel\Fortify\Features;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\AboutUsController;
 
-Route::get('/', [HomepageController::class, 'index'])->name('home');
-Route::get('/blogs', [BlogController::class, 'index'])->name('blogs');
-Route::get('/products', [ProductController::class, 'index'])->name('products');
+Route::get('/', [HomepageController::class, 'index'])->name('beranda');
+Route::get('/artikel', [BlogController::class, 'index'])->name('artikel');
+Route::get('/produk', [ProductController::class, 'index'])->name('produk');
+Route::get('/tentang-kami', [AboutUsController::class, 'index'])->name('tentangkami');
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
