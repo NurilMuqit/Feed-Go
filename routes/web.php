@@ -17,7 +17,7 @@ Route::get('/produk', [ProductController::class, 'index'])->name('produk');
 Route::get('/tentang-kami', [AboutUsController::class, 'index'])->name('tentangkami');
 
 Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
+    ->middleware(['auth', 'verified', 'role:admin,superadmin'])
     ->name('dashboard');
 
 Route::middleware(['auth'])->group(function () {

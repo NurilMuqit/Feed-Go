@@ -2,7 +2,7 @@
 {{-- header --}}
   <div class="bg-linear-to-tl from-[#6C9D50] to-[#1B601E] rounded-4xl relative overflow-hidden">
 
-    <div class="flex items-center justify-between mb-6">
+    <div class="flex items-center justify-between mb-2">
 
       {{-- logo --}}
       <div class="text-2xl font-bold text-green-300 px-6">
@@ -20,7 +20,29 @@
       {{-- auth --}}
       <div class="flex items-center gap-4 p-5">
         @auth
-        <a href="{{ url('/dashboard') }}" class="bg-yellow-400 text-green-800 px-4 py-2 rounded-full text-sm font-semibold hover:bg-yellow-300">Dashboard</a>
+          @if (in_array(auth()->user()->role, ['admin', 'superadmin']))
+
+              <a href="{{ url('/dashboard') }}"
+                 class="bg-yellow-400 text-green-800 px-4 py-2 rounded-full
+                        text-sm font-semibold hover:bg-yellow-300">
+                  Dashboard
+              </a>
+
+          @else
+
+              <livewire:dropdown
+                  :label="explode(' ', auth()->user()->name)[0]"
+                  :items="[
+                      ['label' => 'Profile', 'route' => 'profile.edit'],
+                      ['label' => 'Logout', 'action' => 'logout'],
+                  ]"
+                  buttonClass="px-4 py-2 rounded-full text-sm bg-yellow-400 text-green-800 font-semibold flex items-center gap-2"
+                  menuClass="absolute mt-2 w-48 bg-yellow-400 rounded-xl shadow-lg overflow-hidden z-50"
+                  itemClass="block px-4 py-2 text-green-800 text-sm font-semibold hover:bg-yellow-300"
+                  svgClass="text-green-800"
+                  :showGreeting="true"
+              />
+          @endif
         @else
         <a href="{{ route('register') }}" class="text-yellow-400 text-sm hover:text-yellow-200">Daftar Sekarang</a>
         <a href="{{ route('login') }}" class="bg-yellow-400 text-green-800 px-4 py-2 rounded-full text-sm font-semibold hover:bg-yellow-300">

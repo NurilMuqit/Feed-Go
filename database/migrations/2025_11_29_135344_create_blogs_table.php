@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('title');
             $table->text('content');
             $table->string('thumbnail');
+            $table->string('slug')->unique();
             $table->foreignId('category_id')->constrained('blog_categories');
             $table->timestamps();
         });

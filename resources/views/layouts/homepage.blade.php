@@ -247,23 +247,29 @@
             </p>
 
             <form class="max-w-2xl mx-auto">
-                <div class="relative flex items-center">
-                    <input 
-                        type="email" 
-                        placeholder="Email" 
-                        class="w-full pl-6 pr-40 py-4 rounded-full border-2 border-gray-200 
-                               focus:border-green-500 focus:outline-none text-gray-700
-                               placeholder:text-gray-400"
-                        required
-                    />
-                    <button 
-                        type="submit"
-                        class="absolute right-1 bg-green-700 hover:bg-green-800 text-white font-semibold 
-                               px-8 py-3 rounded-full transition duration-300 
-                               shadow-md hover:shadow-lg whitespace-nowrap">
-                        Ikuti FeedGo
-                    </button>
-                </div>
+              <div
+                  class="flex items-center border-2 border-gray-200 rounded-full 
+                         focus-within:border-green-500 transition"
+              >
+
+                  <input 
+                      type="email" 
+                      placeholder="Email"
+                      class="flex-1 pl-4 py-3 bg-transparent 
+                             focus:outline-none text-gray-700
+                             placeholder:text-gray-400"
+                      required
+                  />
+
+                  <button 
+                      type="submit"
+                      class="bg-[#1B601E] hover:bg-green-600 text-white font-semibold 
+                             px-6 py-3 rounded-full transition duration-300 
+                             shadow-md whitespace-nowrap">
+                      Ikuti FeedGo
+                  </button>
+                
+              </div>
             </form>
         </div>
     </div>

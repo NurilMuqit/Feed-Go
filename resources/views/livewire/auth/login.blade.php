@@ -31,7 +31,7 @@
                     
                     {{-- Email --}}
                     <div class="flex items-center gap-3 rounded-xl">
-                        <flux:icon.envelope class="text-white w-5 h-5" />
+                        <flux:icon.envelope class="text-white w-5 h-5 bg" />
                         <flux:input
                             name="email"
                             {{-- :label="__('Email address')" --}}
