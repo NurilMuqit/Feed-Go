@@ -18,7 +18,7 @@ class RoleMiddleware
         $user = $request->user();
 
         if (! $user || ! in_array($user->role, $roles)) {
-            abort(403, 'Anda tidak memiliki akses.');
+            return redirect()->route('beranda');
         }
 
         return $next($request);

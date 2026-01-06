@@ -11,10 +11,18 @@
 
       {{-- navbar --}}
       <nav class="hidden md:flex gap-8 text-white font-bold">
-        <a href="{{ route('beranda') }}" class="hover:text-yellow-300 text-yellow-400">Beranda</a>
-        <a href="{{ route('produk') }}" class="hover:text-yellow-300">Produk</a>
-        <a href="{{ route('tentangkami') }}" class="hover:text-yellow-300">Tentang Kami</a>
-        <a href="{{ route('artikel') }}" class="hover:text-yellow-300">Artikel</a>
+        <a href="{{ route('beranda') }}" class="{{ request()->routeIs('beranda')
+            ? 'text-yellow-400'
+            : 'hover:text-yellow-300' }}">Beranda</a>
+        <a href="{{ route('produk') }}" class="{{ request()->routeIs('produk')
+            ? 'text-yellow-400'
+            : 'hover:text-yellow-300' }}">Produk</a>
+        <a href="{{ route('tentangkami') }}" class="{{ request()->routeIs('tentangkami')
+            ? 'text-yellow-400'
+            : 'hover:text-yellow-300' }}">Tentang Kami</a>
+        <a href="{{ route('artikel') }}" class="{{ request()->routeIs('artikel')
+            ? 'text-yellow-400'
+            : 'hover:text-yellow-300' }}">Artikel</a>
       </nav>
       
       {{-- auth --}}
@@ -22,7 +30,7 @@
         @auth
           @if (in_array(auth()->user()->role, ['admin', 'superadmin']))
 
-              <a href="{{ url('/dashboard') }}"
+              <a href="{{ route('admin.dashboard') }}"
                  class="bg-yellow-400 text-green-800 px-4 py-2 rounded-full
                         text-sm font-semibold hover:bg-yellow-300">
                   Dashboard

@@ -14,7 +14,7 @@ class HomepageController extends Controller
      */
     public function index()
     {   
-        $products =Product::inRandomOrder()->take(3)->get();
+        $products =Product::inRandomOrder()->take(2)->get();
         return view('layouts.homepage', compact('products'));
     }
 

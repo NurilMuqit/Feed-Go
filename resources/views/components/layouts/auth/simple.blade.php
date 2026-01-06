@@ -3,7 +3,7 @@
     <head>
         @include('partials.head')
     </head>
-    <body class="min-h-screen antialiased bg-[radial-gradient(circle_at_35%_30%,#2E7D32_8%,#084A0B_75%)] ">
+    <body class=" font-[poppins] min-h-screen antialiased bg-[radial-gradient(circle_at_35%_30%,#2E7D32_8%,#084A0B_75%)] ">
         <div class="relative flex items-center mb-6 p-5">
         
             {{-- logo --}}

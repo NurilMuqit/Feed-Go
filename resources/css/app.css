@@ -22,6 +22,7 @@
     --color-zinc-800: #262626;
     --color-zinc-900: #171717;
     --color-zinc-950: #0a0a0a;
+    --color-green-hover: #EAAA00;
 
     --color-accent: var(--color-neutral-800);
     --color-accent-content: var(--color-neutral-800);
@@ -59,6 +60,35 @@ input:focus[data-flux-control],
 textarea:focus[data-flux-control],
 select:focus[data-flux-control] {
     @apply outline-hidden ring-2 ring-accent ring-offset-2 ring-offset-accent-foreground;
+}
+
+@layer utilities{
+    .flux-box{
+        padding: 1.5rem !important;
+        border-radius: 0.75rem;
+        color: #388E3C;
+        margin-bottom: 1rem !important;
+        transition: background-color .15s ease, color .15s ease;
+        box-shadow: var(--shadow-lg);
+    }
+
+    .flux-box:hover {
+        background-color: #E8F5E9 !important; /* Light green */
+    }
+
+    .flux-box.is-current {
+        background-color: #EAAA00 !important; /* Green */
+        color: white !important;
+    }
+
+    .dark .flux-box:hover {
+        background-color: #388E3C !important; /* Dark green */
+    }
+
+    .dark .flux-box.is-current {
+        background-color: #E9A900 !important; /* Darker green */
+        color: white !important;
+    }
 }
 
 /* \[:where(&)\]:size-4 {

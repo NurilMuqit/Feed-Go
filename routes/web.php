@@ -10,23 +10,31 @@ use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AboutUsController;
+use App\Http\Controllers\AdminController;
 
 Route::get('/', [HomepageController::class, 'index'])->name('beranda');
 Route::get('/artikel', [BlogController::class, 'index'])->name('artikel');
 Route::get('/produk', [ProductController::class, 'index'])->name('produk');
 Route::get('/tentang-kami', [AboutUsController::class, 'index'])->name('tentangkami');
 
-Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified', 'role:admin,superadmin'])
-    ->name('dashboard');
+Route::middleware(['auth', 'role:admin,superadmin'])->group(function () {
+    Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+    Route::get('/admin/product', [AdminController::class, 'product'])->name('admin.product');
+    Route::get('/admin/order', [AdminController::class, 'order'])->name('admin.order');
+    Route::get('/admin/message', [AdminController::class, 'message'])->name('admin.message');
+    Route::get('/admin/delivery', [AdminController::class, 'delivery'])->name('admin.delivery');
+    Route::get('/admin/payment', [AdminController::class, 'payment'])->name('admin.payment');
+    Route::get('/admin/report', [AdminController::class, 'report'])->name('admin.report');
+    Route::get('/admin/article', [AdminController::class, 'article'])->name('admin.article');
+    Route::get('settings/appearance', Appearance::class)->name('appearance.edit');
+    Route::get('/admin/sales-data', [AdminController::class, 'getSalesData'])->name('admin.sales-data');
+});
 
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
 
     Route::get('settings/profile', Profile::class)->name('profile.edit');
     Route::get('settings/password', Password::class)->name('user-password.edit');
-    Route::get('settings/appearance', Appearance::class)->name('appearance.edit');
-
     Route::get('settings/two-factor', TwoFactor::class)
         ->middleware(
             when(

@@ -11,7 +11,7 @@ class LoginResponse implements LoginResponseContract
         $user = $request->user();
 
         if (in_array($user->role, ['admin', 'superadmin'])) {
-            return redirect('/dashboard');
+            return redirect('/admin/dashboard');
         }
 
         $request->session()->forget('url.intended');
