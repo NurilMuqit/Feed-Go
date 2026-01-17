@@ -90,7 +90,50 @@ select:focus[data-flux-control] {
         color: white !important;
     }
 }
+.dark trix-editor {
+    background-color: #1f2937;
+    color: #f3f4f6;
+    border-color: #4b5563;
+}
 
+.dark trix-toolbar {
+    background-color: #374151;
+    border-color: #4b5563;
+}
+
+.dark trix-toolbar .trix-button-group {
+    border-color: #4b5563;
+}
+
+.dark trix-toolbar .trix-button {
+    color: #f3f4f6;
+    border-color: #4b5563;
+}
+
+.dark trix-toolbar .trix-button:hover {
+    background-color: #4b5563;
+}
+
+.dark trix-toolbar .trix-button.trix-active {
+    background-color: #3b82f6;
+    color: white;
+}
+
+.dark trix-toolbar .trix-dialogs {
+    background-color: #374151;
+    color: #f3f4f6;
+}
+
+.dark trix-toolbar .trix-dialog {
+    background-color: #1f2937;
+    border-color: #4b5563;
+}
+
+.dark trix-toolbar .trix-input {
+    background-color: #374151;
+    color: #f3f4f6;
+    border-color: #4b5563;
+}
 /* \[:where(&)\]:size-4 {
     @apply size-4;
 } */

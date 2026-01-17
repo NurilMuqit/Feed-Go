@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('category_id')->constrained('product_categories');
             $table->string('product_name');
-            $table->string('product_vendor');
             $table->text('product_description');
             $table->decimal('product_price', 10, 2);
             $table->unsignedInteger('product_stock');
+            $table->enum('product_status', ['available', 'unavailable'])->default('available');
             $table->string('product_image');
             $table->string('product_slug')->unique();
             $table->timestamps();

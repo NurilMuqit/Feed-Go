@@ -7,16 +7,16 @@ use Illuminate\Support\Facades\Auth;
 
 class Dropdown extends Component
 {
-    public bool $open = false;
+    public $open = false;
 
-    public string $label = 'Use';
-    public array $items = [];
-    public string $align = 'right';
-    public string $buttonClass = '';
-    public string $menuClass = '';
-    public string $itemClass = '';
-    public string $svgClass = '';
-    public bool $showGreeting = false;
+    public $label = 'Use';
+    public $items = [];
+    public $align = 'right';
+    public $buttonClass = '';
+    public $menuClass = '';
+    public $itemClass = '';
+    public $svgClass = '';
+    public $showGreeting = false;
 
     public function toggle()
     {

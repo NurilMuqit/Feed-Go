@@ -12,7 +12,11 @@
             <div class="relative overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800">
                 <div class="flex justify-between items-center p-3 mt-1">
                     <h1 class="font-bold text-gray-900 dark:text-white">Total Pesanan</h1>
-                    <flux:button class="!bg-transparent !border-0" icon="ellipsis-vertical"></flux:button>
+                    <button class="text-gray-400 hover:text-gray-600">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z"/>
+                        </svg>
+                    </button>
                 </div>
                 <div class="flex px-3 items-center justify-between gap-3">
                     <div class="flex items-center gap-3">
@@ -35,7 +39,11 @@
             <div class="relative overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800">
                 <div class="flex justify-between p-3 mt-1 items-center">
                     <h1 class="font-bold text-gray-900 dark:text-white">Pesanan Aktif</h1>
-                    <flux:button class="!bg-transparent !border-0" icon="ellipsis-vertical"></flux:button>
+                    <button class="text-gray-400 hover:text-gray-600">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z"/>
+                        </svg>
+                    </button>
                 </div>
                 <div class="flex px-3 items-center justify-between gap-3">
                     <div class="flex items-center gap-3">
@@ -58,7 +66,11 @@
             <div class="relative overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800">
                 <div class="flex justify-between p-3 mt-1 items-center">
                     <h1 class="font-bold text-gray-900 dark:text-white">Pesanan Terkirim</h1>
-                    <flux:button class="!bg-transparent !border-0" icon="ellipsis-vertical"></flux:button>
+                    <button class="text-gray-400 hover:text-gray-600">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z"/>
+                        </svg>
+                    </button>
                 </div>
                 <div class="flex px-3 items-center justify-between gap-3">
                     <div class="flex items-center gap-3">
@@ -164,7 +176,7 @@
         <div class="overflow-x-auto">
             <table class="w-full">
                 <thead>
-                    <tr class="border-b border-gray-200 dark:border-neutral-700">
+                    <tr class="border-b border-gray-200 dark:border-neutral-700 bg-[#EEEEEE] dark:bg-neutral-700">
                         <th class="text-left py-3 px-4">
                             <input type="checkbox" class="rounded border-gray-300">
                         </th>

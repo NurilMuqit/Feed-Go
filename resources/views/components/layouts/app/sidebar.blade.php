@@ -4,6 +4,9 @@
         @include('partials.head')
     </head>
     <body class="overflow-hidden h-screen bg-white dark:bg-zinc-800 font-[Poppins]">
+        <style>
+            [x-cloak] { display: none !important; }
+        </style>
         <div class="flex h-full w-full">
 
             @if (auth()->user()->role === 'admin')       
@@ -221,6 +224,6 @@
     
         </div>
         @fluxScripts
-
+        @livewireScripts
     </body>
 </html>

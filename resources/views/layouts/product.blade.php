@@ -60,7 +60,7 @@
       :items="[
         // nanti diisi 
       ]"
-      buttonClass="border rounded-lg px-3 py-2 text-sm flex gap-2"
+      buttonClass="border rounded-lg px-3 py-2 text-sm flex gap-2 items-center"
       menuClass="absolute mt-2 w-48 bg-white rounded-xl shadow-lg overflow-hidden z-50"
       itemClass="block px-4 py-2 text-black text-sm font-semibold hover:bg-gray-100"
       svgClass="text-black"
