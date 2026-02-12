@@ -16,10 +16,16 @@ return new class extends Migration
             $table->foreignId('category_id')->constrained('product_categories');
             $table->string('product_name');
             $table->text('product_description');
-            $table->decimal('product_price', 10, 2);
+            $table->decimal('product_weight', 8, 2)->unsigned();
+            $table->enum('product_unit', ['kg', 'gr']);
+            $table->decimal('product_price', 10, 2)->unsigned();
+            $table->decimal('product_discount_price', 10, 2)->unsigned()->nullable();
             $table->unsignedInteger('product_stock');
             $table->enum('product_status', ['available', 'unavailable'])->default('available');
-            $table->string('product_image');
+            $table->string('product_image1');
+            $table->string('product_image2')->nullable();
+            $table->string('product_image3')->nullable();
+            $table->string('product_image4')->nullable();
             $table->string('product_slug')->unique();
             $table->timestamps();
         });

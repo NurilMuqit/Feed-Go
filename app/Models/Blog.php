@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Blog extends Model
 {
-    protected $fillable = ['user_id', 'title', 'content', 'thumbnail','slug', 'category_id'];
+    protected $fillable = ['user_id', 'title','short_description','reading_time', 'content', 'thumbnail', 'status', 'is_featured', 'slug', 'category_id'];
+    protected $casts = ['is_featured' => 'boolean'];
 
     public function category()
     {

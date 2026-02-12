@@ -7,11 +7,11 @@
             <span class="font-light">Kelola pesan pelanggan, pesanan, dan komplain</span>
         </div>
         <div class="grid auto-rows-min gap-4 md:grid-cols-3">
-            <div class="relative aspect-video overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
-                
+            <div class="justify-center flex relative overflow-hidden rounded-xl p-5 border border-neutral-200 dark:border-neutral-700">
+                <livewire:admin.message.nav-table />
             </div>
-            <div class="relative aspect-video overflow-hidden rounded-xl border col-span-2 border-neutral-200 dark:border-neutral-700">
-
+            <div class="relative flex justify-center overflow-hidden rounded-xl border col-span-2 border-neutral-200 dark:border-neutral-700">
+                
             </div>
         </div>
     </div>

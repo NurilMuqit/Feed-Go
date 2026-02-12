@@ -8,7 +8,7 @@
 <div class="relative w-full h-[400px] overflow-hidden">
 
     <img
-        src="{{ asset('images/Sawah.png') }}"
+        src="{{ asset('images/Sawah.webp') }}"
         alt="image"
         class="absolute inset-0 w-full h-full object-cover blur-sm"
     >
@@ -19,13 +19,9 @@
             Produk Pakan FeedGo
         </h1>
 
-        <div class="flex items-center gap-2 text-sm text-white/90">
-            <span class="font-semibold">Home</span>
-            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m9 5 7 7-7 7" />
-            </svg>
-            <span class="font-light">Produk</span>
-        </div>
+        <h2 class="text-white text-sm font-light">
+          Solusi Pakan Berbasis Riset untuk Produktivitas Ternak
+        </h2>
 
     </div>
 
@@ -34,76 +30,7 @@
 
 {{-- produk --}}
 <section class="max-w-5xl mx-auto bg-[#F5F5F5] rounded-3xl shadow-md -mt-20 relative z-20 p-10 text-center">
-
-  <div class="mb-6">
-      <h2 class="text-[#2E7D32] font-semibold text-2xl mb-2">
-        Produk Pakan Berbasis Riset dari Mitra Lokal
-      </h2>
-      <p class="text-[#0B460E] text-sm">
-        Temukan produk pakan berkualitas premium berbasis riset dari mitra lokal terverifikasi.
-      </p>
-  </div>
-  <div class="flex flex-wrap gap-4 items-center">
-    <div class="flex item-center gap-2 flex-1 border rounded-lg px-4 py-2 w-full">
-      <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-        <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"/>
-      </svg>
-      <input
-      type="text"
-      placeholder="Cari produk pakan berbasis riset atau kategori..."
-      class="text-sm w-full bg-transparent outline-none text-gray-700"
-      />
-    </div>
-    
-    <livewire:dropdown
-      :label="'Kategori'"
-      :items="[
-        // nanti diisi 
-      ]"
-      buttonClass="border rounded-lg px-3 py-2 text-sm flex gap-2 items-center"
-      menuClass="absolute mt-2 w-48 bg-white rounded-xl shadow-lg overflow-hidden z-50"
-      itemClass="block px-4 py-2 text-black text-sm font-semibold hover:bg-gray-100"
-      svgClass="text-black"
-      :showGreeting="false"
-    />
-    <select class="border rounded-lg px-3 py-2 text-sm text-black">
-      <option>Urutkan</option>
-    </select>
-  
-    <button class="bg-yellow-400 p-2 rounded-lg"><svg class="w-6 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.143 4H4.857A.857.857 0 0 0 4 4.857v4.286c0 .473.384.857.857.857h4.286A.857.857 0 0 0 10 9.143V4.857A.857.857 0 0 0 9.143 4Zm10 0h-4.286a.857.857 0 0 0-.857.857v4.286c0 .473.384.857.857.857h4.286A.857.857 0 0 0 20 9.143V4.857A.857.857 0 0 0 19.143 4Zm-10 10H4.857a.857.857 0 0 0-.857.857v4.286c0 .473.384.857.857.857h4.286a.857.857 0 0 0 .857-.857v-4.286A.857.857 0 0 0 9.143 14Zm10 0h-4.286a.857.857 0 0 0-.857.857v4.286c0 .473.384.857.857.857h4.286a.857.857 0 0 0 .857-.857v-4.286a.857.857 0 0 0-.857-.857Z"/>
-      </svg>
-    </button>
-    <button class="border p-2 rounded-lg text-black"><svg class="w-6 h-6 text-black" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-      <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M9 8h10M9 12h10M9 16h10M4.99 8H5m-.02 4h.01m0 4H5"/>
-      </svg>
-    </button>
-    <button class="border px-4 py-2 rounded-lg text-sm text-black">Filter</button>
-  </div>
-  <div class="max-w-7xl mx-auto px-6 mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">  
-    <div class="rounded-xl shadow hover:shadow-lg transition">   
-      <div class="relative rounded-t-xl p-6 pb-8 bg-[#F1C40F] text-white">
-        <span class="absolute top-2 w-9 h-9 left-2 text-[11px] bg-[#2E7D32] items-center justify-center flex px-2 py-0.5 rounded-full">
-          Baru
-        </span>
-        <img src="{{ asset('images/Produk1.png') }}"
-             class="h-38 mx-auto object-contain"/>
-        <span class="absolute bottom-2 left-2 text-[9px] bg-[#E81010] rounded-full px-2 py-0.5">20% off</span>
-        <span class="absolute bottom-2 right-2 text-[9px]">Berat bersih: 2kg</span>
-      </div>  
-      <div class="p-2">
-          <div class="flex justify-between">
-              <h3 class="font-semibold text-sm mb-1 text-black">Pakan Udang</h3>
-              <span class="text-xs text-[#2E7D32]">&#9679; Tersedia</span>
-          </div>
-        <p class="text-xs text-black mb-2 text-start opacity-45">FeedGo NutriGrow</p>    
-        <div class="flex gap-3">
-          <span class="font-semibold text-black text-sm">Rp 75.000</span>
-          <span class="line-through text-black opacity-30 text-sm"> Rp 100.000</span>
-        </div>
-      </div>  
-    </div>    
-  </div>
+  <livewire:user.products.product-list />
 </section>
 
 {{-- keunggulan --}}
@@ -146,7 +73,7 @@
          <path d="M11.0417 18.6418C11.0417 14.796 12.6703 11.1078 15.5693 8.38844C18.4683 5.66909 22.4002 4.14137 26.5 4.14137C30.5998 4.14137 34.5317 5.66909 37.4307 8.38844C40.3297 11.1078 41.9583 14.796 41.9583 18.6418C41.9583 19.1912 42.191 19.7181 42.6051 20.1065C43.0193 20.495 43.581 20.7133 44.1667 20.7133C44.7523 20.7133 45.3141 20.495 45.7282 20.1065C46.1423 19.7181 46.375 19.1912 46.375 18.6418C46.3747 15.4623 45.5076 12.3357 43.856 9.55925C42.2044 6.78276 39.8233 4.4486 36.939 2.77864C34.0547 1.10869 30.763 0.158413 27.3768 0.0181525C23.9906 -0.122108 20.6224 0.552303 17.5924 1.97728C14.5623 3.40226 11.9712 5.53046 10.0651 8.15959C8.15912 10.7887 7.00156 13.8314 6.70251 16.9985C6.40346 20.1655 6.97284 23.3517 8.35655 26.2542C9.74025 29.1567 11.8923 31.6789 14.6081 33.5813C16.937 35.2132 19.6191 36.346 22.4654 36.8998C22.8608 37.7317 23.5374 38.4182 24.3905 38.8531C25.2437 39.288 26.2259 39.447 27.1851 39.3056C28.1443 39.1642 29.0271 38.7302 29.6969 38.0708C30.3667 37.4114 30.7862 36.5633 30.8904 35.6577C30.9947 34.7522 30.7779 33.8396 30.2737 33.0613C29.7694 32.2829 29.0057 31.6821 28.1008 31.3519C27.1959 31.0216 26.2002 30.9802 25.2677 31.2342C24.3352 31.4882 23.518 32.0233 22.9424 32.7569C19.5539 32.0052 16.5352 30.2024 14.3753 27.6406C12.2153 25.0788 11.0407 21.9079 11.0417 18.6418ZM13.25 18.6418C13.2509 16.3552 13.9241 14.1133 15.1957 12.1625C16.4673 10.2117 18.2879 8.62784 20.4573 7.58506C22.6266 6.54228 25.0606 6.08105 27.4913 6.25211C29.922 6.42318 32.2554 7.21991 34.2345 8.55465C36.2137 9.88939 37.762 11.7104 38.7091 13.8173C39.6561 15.9242 39.9652 18.2353 39.6024 20.4963C39.2395 22.7574 38.2188 24.8807 36.6524 26.6327C35.0861 28.3847 33.0349 29.6974 30.7245 30.4265C29.5364 29.5039 28.0424 28.9992 26.5 28.9992C24.8945 28.9992 23.4238 29.5357 22.2755 30.4265C19.6448 29.5964 17.3584 28.0123 15.739 25.8979C14.1196 23.7834 13.249 21.2453 13.25 18.6418ZM26.5 41.4281C27.5602 41.4286 28.605 41.1905 29.5467 40.7337C30.4884 40.2769 31.2994 39.6147 31.9118 38.8029C32.5241 37.9911 32.9197 37.0533 33.0655 36.0682C33.2113 35.0832 33.103 34.0798 32.7496 33.1422H45.2708C47.3207 33.1422 49.2867 33.906 50.7362 35.2657C52.1857 36.6254 53 38.4695 53 40.3924V41.4281C53 46.3852 49.6367 50.5779 44.8623 53.4282C40.0614 56.2952 33.5622 58 26.5 58C19.4377 58 12.9408 56.2952 8.13771 53.4282C3.36329 50.5779 0 46.3852 0 41.4281V40.3924C0 38.4695 0.814321 36.6254 2.26382 35.2657C3.71332 33.906 5.67926 33.1422 7.72917 33.1422H10.7303C13.5546 35.8473 17.1154 37.7745 21.0255 38.7145C22.218 40.353 24.2276 41.4281 26.5 41.4281Z" fill="white"/>
         </svg>
         <div>
-          <p class="font-semibold text-xl leading-tight">Support Peternak</p>
+          <p class="font-semibold text-xl leading-tight">Dukung Peternak</p>
           <p class="text-sm text-[#EAAA00]">konsultasi & pendampingan</p>
         </div>
       </div>

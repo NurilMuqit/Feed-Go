@@ -14,7 +14,7 @@
                 <flux:sidebar.toggle class="lg:hidden" icon="x-mark" />
     
                 <a href="{{ route('admin.dashboard') }}" class=" flex items-center justify-center" wire:navigate>
-                    <img src="{{ asset('images/FeedGo.png') }}" alt="" class="h-18">
+                    <img src="{{ asset('images/FeedGo.webp') }}" alt="" class="h-18">
                 </a>
     
                 <flux:navlist variant="outline">

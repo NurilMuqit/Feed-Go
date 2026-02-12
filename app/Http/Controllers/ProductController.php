@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Product;
 
 class ProductController extends Controller
 {
@@ -11,7 +12,7 @@ class ProductController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
+    {   
         return view('layouts.product');
     }
 
@@ -34,9 +35,10 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $slug)
     {
-        //
+        $product = Product::where('product_slug', $slug)->firstOrFail();
+        return view('layouts.product-detail', compact('product'));
     }
 
     /**

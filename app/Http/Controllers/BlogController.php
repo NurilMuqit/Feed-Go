@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Blog;
+use App\Models\BlogCategory;
 
 class BlogController extends Controller
 {
@@ -11,8 +13,30 @@ class BlogController extends Controller
      * Display a listing of the resource.
      */
     public function index()
+    {   
+        $featuredArticles = Blog::with(['category','user'])->where('status', 'published')->latest()->take(4)->get();
+        $popularArticles = Blog::with(['category','user'])->where('status', 'published')->inRandomOrder()->take(3)->get();
+        $trendingArticles = Blog::with(['category','user'])->where('status', 'published')->latest()->take(3)->get();
+        return view('layouts.blogs', compact('popularArticles', 'trendingArticles', 'featuredArticles'));
+    }
+
+    public function search(Request $request)
     {
-        return view('layouts.blogs');
+        $query = $request->input('search');
+
+        $articles = Blog::with(['category', 'user'])
+            ->where('status', 'published')
+            ->where(function($q) use ($query) {
+                $q->where('title', 'like', '%' . $query . '%')
+                  ->orWhere('short_description', 'like', '%' . $query . '%')
+                  ->orWhereHas('category', function($cat) use ($query) {
+                      $cat->where('category', 'like', '%' . $query . '%');
+                  });
+            })
+            ->latest()
+            ->paginate(12);
+
+        return view('articles.search', compact('articles', 'query'));
     }
 
     /**
@@ -28,18 +52,20 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'content' => 'required|string',
-        ]);
+        //
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($slug)
     {
-        //
+        $blog = Blog::with(['category', 'user'])
+            ->where('slug', $slug)
+            ->where('status', 'published')
+            ->firstOrFail();
+
+        return view('layouts.blog-detail', compact('blog'));
     }
 
     /**

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Product;
+use App\Models\Blog;
 
 class AdminController extends Controller
 {
@@ -16,8 +18,9 @@ class AdminController extends Controller
     }
 
     public function product()
-    {
-        return view('admin.product');
+    {   
+        $products = Product::all();
+        return view('admin.product', compact('products'));
     }
 
     public function order()
@@ -46,8 +49,9 @@ class AdminController extends Controller
     }
 
     public function article()
-    {
-        return view('admin.article');
+    {   
+        $articles= Blog::all();
+        return view('admin.article', compact('articles'));
     }
 
     public function getSalesData(Request $request)

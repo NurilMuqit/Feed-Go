@@ -4,6 +4,7 @@ namespace App\Livewire\Admin\Products;
 
 use Livewire\Component;
 use App\Models\Product;
+use Illuminate\Support\Facades\Storage;
 
 class DeleteProduct extends Component
 {   
@@ -11,7 +12,7 @@ class DeleteProduct extends Component
     public $productId;
     public $product_name;
 
-    public $listeners = [
+    protected $listeners = [
         'open-delete-product' => 'open',
     ];
 
@@ -28,20 +29,26 @@ class DeleteProduct extends Component
     public function delete()
     {
         $product = Product::findOrFail($this->productId);
-        if($product->product_image && \Storage::disk('public')->exists($product->product_image)) {
-            \Storage::disk('public')->delete($product->product_image);
+
+        $imageFields = ['product_image1', 'product_image2', 'product_image3', 'product_image4'];
+        
+        foreach ($imageFields as $field) {
+            if ($product->$field && Storage::disk('public')->exists($product->$field)) {
+                Storage::disk('public')->delete($product->$field);
+            }
         }
+        
         $product->delete();
 
-        session()->flash('message', 'Produk berhasil dihapus.');
+        session()->flash('success', 'Produk "' . $this->product_name . '" berhasil dihapus.');
 
-        $this->dispatch('product-updated');
+        $this->dispatch('product-deleted');
         $this->close();
     }
 
     public function close()
     {   
-        $this->reset();
+        $this->reset(['productId', 'product_name']);
         $this->open = false;
     }
 

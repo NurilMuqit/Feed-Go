@@ -14,7 +14,7 @@
             </tr>
         </thead>
         <tbody class="text-center">
-            @foreach ($this->articles as $index => $article)
+            @forelse ($this->articles as $index => $article)
                 
                 <tr class="bg-white dark:bg-neutral-700 rounded-xl shadow-sm">
 
@@ -112,7 +112,13 @@
                         </div>
                     </td>
                 </tr>
-            @endforeach
+                @empty
+                <tr>
+                    <td colspan="10" class="text-center py-10 text-gray-400">
+                        Artikel belum tersedia
+                    </td>
+                </tr>
+            @endforelse
         </tbody>
     </table>        
 </div>

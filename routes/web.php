@@ -15,7 +15,11 @@ use App\Http\Controllers\AdminController;
 Route::get('/', [HomepageController::class, 'index'])->name('beranda');
 Route::get('/artikel', [BlogController::class, 'index'])->name('artikel');
 Route::get('/produk', [ProductController::class, 'index'])->name('produk');
+Route::get('/produk/{slug}', [ProductController::class, 'show'])->name('product.show');
+Route::get('/artikel/{slug}', [BlogController::class, 'show'])->name('artikel.show');
 Route::get('/tentang-kami', [AboutUsController::class, 'index'])->name('tentangkami');
+Route::get('/kebijakan-privasi',[HomepageController::class, 'privacyPolicy'])->name('privacy.policy');
+Route::get('/syarat-dan-ketentuan',[HomepageController::class, 'termsConditions'])->name('terms.conditions');
 
 Route::middleware(['auth', 'role:admin,superadmin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');

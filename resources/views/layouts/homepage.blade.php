@@ -76,7 +76,7 @@
   <div class="relative z-10 w-[1040px] h-[820px]">
 
     <div class="absolute inset-0 flex items-center justify-center">
-      <img src="{{ asset('images/FeedGo.png') }}" alt="Logo FeedGo" class="h-48" />
+      <img src="{{ asset('images/FeedGo.webp') }}" alt="Logo FeedGo" class="h-48" />
     </div>
 
     <div class="absolute top-0 left-1/2 -translate-x-1/2">
@@ -136,9 +136,9 @@
 {{-- Product --}}
 <section class="relative py-12 overflow-visible">
 
-  <img src="/images/Daun.png"
+  <img src="{{ asset('images/Daun.webp') }}"
        class="absolute top-0 right-0 w-50 pointer-events-none" />
-  <img src="/images/Daun2.png"
+  <img src="{{ asset('images/Daun2.webp') }}"
        class="absolute -bottom-1 left-0 w-40 pointer-events-none" />
 
   <div class="text-center mb-8">

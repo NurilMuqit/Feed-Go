@@ -3,12 +3,10 @@
   <div class="grid grid-cols-1 md:grid-cols-4 gap-12 ">
  
     <div class="justify-center">
-      <img  class="h-15 inline-block ml-15" src="{{ asset('images/FeedGo.png') }}" alt="">
+      <img  class="h-15 inline-block ml-15" src="{{ asset('images/FeedGo.webp') }}" alt="">
       <p class="text-sm text-gray-700 text-justify leading-relaxed tracking-tight hyphens-auto max-w-sm mb-6">
-        To become a hub for science and technology-based
-        products with the business and industrial worlds,
-        as well as a business development accelerator for
-        the benefit of the Indonesian Maritime Continent.
+        Menjadi hub pakan inovatif berbasis riset dan teknologi yang terhubung dengan industri, guna mendorong 
+        kemajuan peternakan dan perikanan nasional yang berkelanjutan.
       </p>
 
     </div>
@@ -27,8 +25,8 @@
       <h4 class="font-semibold mb-4 text-black">Informasi</h4>
       <ul class="space-y-3 text-sm text-gray-700">
         <li><a href="#" class="hover:underline">Produk Unggulan</a></li>
-        <li><a href="#" class="hover:underline">Testimoni</a></li>
-        <li><a href="#" class="hover:underline">Artikel & Edukasi</a></li>
+        <li><a href="#" class="hover:underline">Ulasan</a></li>
+        <li><a href="#" class="hover:underline">Artikel</a></li>
         <li><a href="#" class="hover:underline">Kontak & Lokasi</a></li>
       </ul>
     </div>
@@ -79,10 +77,10 @@
   <div class="border-t border-gray-300 my-10"></div>
 
   <div class="flex flex-col md:flex-row justify-between items-center text-sm text-gray-700 gap-4">
-    <p>©2025 FeedGo. All rights reserved</p>
+    <p>©2026 FeedGo. All rights reserved</p>
     <div class="flex gap-6">
-      <a href="#" class="hover:underline">Privacy & Policy</a>
-      <a href="#" class="hover:underline">Terms & Condition</a>
+      <a href="{{ route('privacy.policy') }}" class="hover:underline">Kebijakan Privasi</a>
+      <a href="{{ route('terms.conditions') }}" class="hover:underline">Syarat & Ketentuan</a>
     </div>
   </div>
 </footer>

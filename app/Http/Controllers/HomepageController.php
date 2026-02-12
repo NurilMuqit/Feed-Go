@@ -18,6 +18,16 @@ class HomepageController extends Controller
         return view('layouts.homepage', compact('products'));
     }
 
+    public function privacyPolicy()
+    {
+        return view('layouts.privacy-policy');
+    }
+
+    public function termsConditions()
+    {
+        return view('layouts.terms-conditions');
+    }
+
     /**
      * Show the form for creating a new resource.
      */

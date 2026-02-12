@@ -8,7 +8,7 @@
         
             {{-- logo --}}
             <div class="text-2xl font-bold text-green-300 px-6">
-                <img src="{{ asset('images/FeedGo.png') }}" alt="Feed-Go" class="h-12 inline-block mr-2" />
+                <img src="{{ asset('images/FeedGo.webp') }}" alt="Feed-Go" class="h-12 inline-block mr-2" />
             </div>
         
             {{-- navbar --}}

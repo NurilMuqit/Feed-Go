@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title') - Feed Go</title>
 
-    <link rel="icon" href="{{ asset('images/FeedGo.png') }}">
+    <link rel="icon" href="{{ asset('images/FeedGo.webp') }}">
     
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 

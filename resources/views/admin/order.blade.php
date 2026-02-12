@@ -3,13 +3,9 @@
 <x-layouts.app :title="__('Pesanan')">
     <div class="flex h-full w-full flex-1 flex-col gap-6 rounded-xl">
  
-        <div class="space-y-1">
-            <h1 class="font-semibold text-3xl text-gray-900 dark:text-white">
-                Pesanan FeedGo
-            </h1>
-            <p class="text-gray-600 dark:text-gray-400">
-                Kelola seluruh pesanan pakan FeedGo
-            </p>
+        <div>
+            <h1 class="font-semibold text-3xl">Pesanan FeedGo</h1>
+            <span class="font-light">Kelola seluruh pesanan pakan FeedGo</span>
         </div>
 
         <div class="grid gap-4 md:grid-cols-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">

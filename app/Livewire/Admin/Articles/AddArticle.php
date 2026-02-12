@@ -18,12 +18,14 @@ class AddArticle extends Component
     public $user_id;
     public $title;
     public $content;
+    public $short_description;
+    public $reading_time;
     public $thumbnail;
     public $status;
     public $category_id;
 
-    public $categories;
-    public $users;
+    public $categories =[];
+    public $users =[];
 
     protected $listeners = [
         'open-add-article' => 'open',
@@ -38,6 +40,8 @@ class AddArticle extends Component
 
     protected $rules = [
         'title' => 'required|string|max:255',
+        'short_description' => 'required|string|max:500',
+        'reading_time' => 'required|integer|min:1',
         'content' => 'required|string',
         'thumbnail' => 'required|image|max:512',
         'status' => 'required|in:draft,published',
@@ -46,8 +50,8 @@ class AddArticle extends Component
 
     public function mount()
     {
-        $this->refreshCategories();
-        $this->refreshUsers();
+        $this->categories = BlogCategory::orderBy('category')->get();
+        $this->users = User::orderBy('name')->get();
     }
 
     public function refreshCategories()
@@ -71,6 +75,8 @@ class AddArticle extends Component
         Blog::create([
             'user_id' => Auth::id(),
             'title' => $this->title,
+            'short_description' => $this->short_description,
+            'reading_time' => $this->reading_time,
             'content' => $this->content,
             'thumbnail' => $thumbnailPath,
             'status' => $this->status,
@@ -80,7 +86,13 @@ class AddArticle extends Component
 
         $this->dispatch('article-added');
         $this->close();
+        $this->reset();
     } 
+
+    public function removeImage()
+    {
+    $this->thumbnail = null;
+    }
 
     public function open()
     {
@@ -91,6 +103,7 @@ class AddArticle extends Component
     public function close()
     {
         $this->open = false;
+        $this->reset();
     }
 
     public function render()

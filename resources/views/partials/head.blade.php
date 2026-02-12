@@ -3,7 +3,7 @@
 
 <title>@yield('title') - Feed Go</title>
 
-<link rel="icon" href="{{ asset('images/FeedGo.png') }}" type="image/png">
+<link rel="icon" href="{{ asset('images/FeedGo.webp') }}" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
 <link rel="preconnect" href="https://fonts.bunny.net">

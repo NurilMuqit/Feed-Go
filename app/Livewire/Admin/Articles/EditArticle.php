@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Blog;
 use App\Models\BlogCategory;
 use App\Models\User;
+use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
 
 class EditArticle extends Component
@@ -17,11 +18,16 @@ class EditArticle extends Component
 
     public $user_id;
     public $title;
+    public $short_description;
+    public $reading_time;
     public $content;
     public $thumbnail;
     public $status;
     public $category_id;
     public $old_thumbnail;
+
+    public $categories = []; 
+    public $users = []; 
 
     protected $listeners = [
         'open-edit-article' => 'open',
@@ -38,6 +44,8 @@ class EditArticle extends Component
         return [
             'title' => 'required|string|max:255',
             'content' => 'required|string',
+            'short_description' => 'required|string|max:500', 
+            'reading_time' => 'required|integer|min:1', 
             'thumbnail' => 'nullable|image|max:512',
             'status' => 'required|in:draft,published',
             'category_id' => 'required|exists:blog_categories,id',
@@ -51,6 +59,8 @@ class EditArticle extends Component
         $this->articleId = $article->id;
         $this->user_id = $article->user_id;
         $this->title = $article->title;
+        $this->short_description = $article->short_description; 
+        $this->reading_time = $article->reading_time; 
         $this->content = $article->content;
         $this->status = $article->status;
         $this->category_id = $article->category_id;
@@ -58,6 +68,11 @@ class EditArticle extends Component
     
         $this->open = true;
         $this->dispatch('trix-load', content: $this->content);
+    }
+
+    public function removeImage()
+    {
+        $this->thumbnail = null;
     }
 
     public function save()
@@ -77,9 +92,12 @@ class EditArticle extends Component
         $article->update([
             'user_id' => $this->user_id,
             'title' => $this->title,
+            'short_description' => $this->short_description, 
+            'reading_time' => $this->reading_time,
             'content' => $this->content,
             'thumbnail' => $thumbnailPath,
             'status' => $this->status,
+            'slug' => Str::slug($this->title),
             'category_id' => $this->category_id,
         ]);
 
@@ -95,9 +113,6 @@ class EditArticle extends Component
 
     public function render()
     {
-        return view('livewire.admin.articles.edit-article',[
-            'categories' => BlogCategory::all(),
-            'users' => User::all(),
-        ]);
+        return view('livewire.admin.articles.edit-article');
     }
 }

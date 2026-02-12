@@ -37,8 +37,8 @@
                     wire:click="close"
                     class="px-4 py-2 rounded-lg
                            border border-gray-300 dark:border-neutral-600
-                           text-gray-700 dark:text-gray-300
-                           hover:bg-gray-100 dark:hover:bg-neutral-700"
+                           text-gray-700 dark:text-gray-300 bg-[#D00000]
+                           hover:bg-red-500 transition text-white font-medium"
                 >
                     Batal
                 </button>
@@ -47,7 +47,7 @@
                     wire:click="save"
                     class="px-4 py-2 rounded-lg
                            bg-green-600 hover:bg-green-700
-                           text-white font-medium"
+                           text-white font-medium transition"
                 >
                     Simpan
                 </button>

@@ -10,7 +10,17 @@ class Products extends Component
 {   
     use WithPagination;
 
+    public $search = '';
+    public $sortBy = 'product_name';
+    public $sortDirection = 'asc';
+
     protected $paginationTheme = 'tailwind';
+
+    protected $queryString = [
+        'search' => ['except' => ''],
+        'sortBy' => ['except' => 'product_name'],
+        'sortDirection' => ['except' => 'asc'],
+    ];
     
     protected $listeners = [
         'product-added' => '$refresh',
@@ -18,15 +28,35 @@ class Products extends Component
         'product-deleted' => '$refresh',
     ];
 
+    public function updatingSearch()
+    {   
+        $this->resetPage();
+    }
+
+    public function updatedSortBy()
+    {
+        $this->resetPage();
+    }
+
+    public function toggleSortDirection()
+    {
+        $this->sortDirection = $this->sortDirection === 'asc' ? 'desc' : 'asc';
+        $this->resetPage();
+    }
+
     public function getProductsProperty()
     {
         return Product::with('category')
-        
-            ->paginate(5);
+            ->where(function ($q) {
+                $q->where('product_name', 'like', '%' . $this->search . '%')
+                  ->orWhere('product_description', 'like', '%' . $this->search . '%');
+            })
+            ->orderBy($this->sortBy, $this->sortDirection)
+            ->paginate(10);
     }
     
     public function render()
-    {
+    {   
         return view('livewire.admin.products.products');
     }
 }
