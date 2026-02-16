@@ -23,6 +23,7 @@ class AddArticle extends Component
     public $thumbnail;
     public $status;
     public $category_id;
+    public $is_featured = false;
 
     public $categories =[];
     public $users =[];
@@ -31,6 +32,7 @@ class AddArticle extends Component
         'open-add-article' => 'open',
         'close-article-modal' => 'close',
         'trix-updated' => 'setContent',
+        'article-category-added' => 'refreshCategories',
     ];
 
     public function setContent($content)
@@ -46,6 +48,7 @@ class AddArticle extends Component
         'thumbnail' => 'required|image|max:512',
         'status' => 'required|in:draft,published',
         'category_id' => 'required|exists:blog_categories,id',
+        'is_featured' => 'boolean',
     ];
 
     public function mount()
@@ -67,6 +70,14 @@ class AddArticle extends Component
     public function save()
     {   
         $this->validate();
+
+        if ($this->is_featured) {
+            $featuredCount = Blog::where('is_featured', true)->count();
+            if ($featuredCount >= 4) {
+                $this->addError('is_featured', 'Maksimal hanya 4 artikel yang bisa menjadi featured. Hapus featured dari artikel lain terlebih dahulu.');
+                return;
+            }
+        }
         $thumbnailPath = null;
         if ($this->thumbnail) {
             $thumbnailPath = $this->thumbnail->store('articles', 'public');
@@ -80,13 +91,24 @@ class AddArticle extends Component
             'content' => $this->content,
             'thumbnail' => $thumbnailPath,
             'status' => $this->status,
+            'is_featured' => $this->is_featured,
             'slug' => Str::slug($this->title),
             'category_id' => $this->category_id,
         ]);
 
         $this->dispatch('article-added');
         $this->close();
-        $this->reset();
+        $this->reset([
+            'title',
+            'short_description',
+            'reading_time',
+            'content',
+            'thumbnail',
+            'status',
+            'is_featured',
+            'category_id',
+        ]);
+        $this->open = false;
     } 
 
     public function removeImage()
@@ -103,9 +125,23 @@ class AddArticle extends Component
     public function close()
     {
         $this->open = false;
-        $this->reset();
+        $this->reset([
+            'title',
+            'short_description',
+            'reading_time',
+            'content',
+            'thumbnail',
+            'status',
+            'category_id',
+            'is_featured',
+        ]);
     }
 
+    public function hydrate()
+    {
+    $this->refreshCategories();
+    }
+    
     public function render()
     {
         return view('livewire.admin.articles.add-article');

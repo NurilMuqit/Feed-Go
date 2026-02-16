@@ -14,9 +14,20 @@ class BlogController extends Controller
      */
     public function index()
     {   
-        $featuredArticles = Blog::with(['category','user'])->where('status', 'published')->latest()->take(4)->get();
-        $popularArticles = Blog::with(['category','user'])->where('status', 'published')->inRandomOrder()->take(3)->get();
-        $trendingArticles = Blog::with(['category','user'])->where('status', 'published')->latest()->take(3)->get();
+        $featuredArticles = Blog::with(['category','user'])->where('status', 'published')->where('is_featured', true)->latest()->take(4)->get();
+        if ($featuredArticles->count() < 4) {
+            $remaining = 4 - $featuredArticles->count();
+            $additionalArticles = Blog::with(['category', 'user'])
+                ->where('status', 'published')
+                ->where('is_featured', false)
+                ->latest()
+                ->take($remaining)
+                ->get();
+            
+            $featuredArticles = $featuredArticles->merge($additionalArticles);
+        }
+        $popularArticles = Blog::with(['category','user'])->where('status', 'published')->orderBy('views', 'desc')->take(2)->get();
+        $trendingArticles = Blog::with(['category','user'])->where('status', 'published')->where('created_at', '>=', now()->subDays(7   ))->orderBy('views', 'desc')->take(3)->get();
         return view('layouts.blogs', compact('popularArticles', 'trendingArticles', 'featuredArticles'));
     }
 
@@ -65,6 +76,11 @@ class BlogController extends Controller
             ->where('status', 'published')
             ->firstOrFail();
 
+        $sessionKey = 'article_viewed_' . $blog->id;
+        if (!session()->has($sessionKey)) {
+        $blog->incrementViews();
+        session()->put($sessionKey, true);
+        }
         return view('layouts.blog-detail', compact('blog'));
     }
 

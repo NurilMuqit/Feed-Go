@@ -39,7 +39,7 @@ class AddArticleCategory extends Component
         $this->validate();
 
         BlogCategory::create([
-            'category' => $this->category,
+            'category' => strtoupper($this->category),
         ]);
 
         $this->dispatch('article-category-added');

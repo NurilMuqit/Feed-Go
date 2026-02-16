@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Blog extends Model
 {
-    protected $fillable = ['user_id', 'title','short_description','reading_time', 'content', 'thumbnail', 'status', 'is_featured', 'slug', 'category_id'];
-    protected $casts = ['is_featured' => 'boolean'];
+    protected $fillable = ['user_id', 'title','short_description','reading_time', 'content', 'thumbnail', 'status', 'is_featured', 'slug', 'views', 'category_id'];
+    protected $casts = ['is_featured' => 'boolean', 'views' => 'integer'];
 
     public function category()
     {
@@ -17,5 +17,10 @@ class Blog extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function incrementViews()
+    {
+        $this->increment('views');
     }
 }

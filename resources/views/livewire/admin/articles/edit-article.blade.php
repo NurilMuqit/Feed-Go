@@ -131,6 +131,19 @@
                     </div>
                 </div>
 
+                <div class="flex items-center gap-3">
+                    <input 
+                        type="checkbox" 
+                        wire:model.defer="is_featured"
+                        id="is_featured"
+                        class="w-4 h-4 text-[#2E7D32] bg-gray-100 border-gray-300 rounded focus:ring-[#2E7D32]"
+                    >
+                    <label for="is_featured" class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                        Tandai sebagai Artikel Featured (Maks. 4 artikel)
+                    </label>
+                </div>
+                @error('is_featured') <p class="text-red-500 text-sm">{{ $message }}</p> @enderror
+
                 <div>
                     <label class="text-sm font-medium text-gray-700 dark:text-gray-300">
                         Deskripsi Pendek

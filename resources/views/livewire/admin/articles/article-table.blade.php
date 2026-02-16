@@ -16,7 +16,7 @@
         <tbody class="text-center">
             @forelse ($this->articles as $index => $article)
                 
-                <tr class="bg-white dark:bg-neutral-700 rounded-xl shadow-sm">
+                <tr wire:key="article-{{ $article->id }}" class="bg-white dark:bg-neutral-700 rounded-xl shadow-sm">
 
                     <td class="px-4 py-4">
                         <input type="checkbox" class="rounded border-gray-300">
@@ -66,12 +66,10 @@
                                     @click.outside="open = false"
                                     x-transition
                                     x-cloak
-                                    class="fixed z-50 mt-2 w-44
-                                           bg-white dark:bg-neutral-800
-                                           border border-gray-200 dark:border-neutral-700
-                                           rounded-xl shadow-lg"
-                                    :style="`top: ${$el.previousElementSibling.getBoundingClientRect().bottom + 8}px;
-                                             left: ${$el.previousElementSibling.getBoundingClientRect().right - 176}px;`"
+                                    class="absolute right-0 mt-2 w-44
+                                            bg-white dark:bg-neutral-800
+                                            border border-gray-200 dark:border-neutral-700
+                                            rounded-xl shadow-lg z-50"
                                 >
                                     <button
                                         wire:click="updateStatus({{ $article->id }}, 'published')"

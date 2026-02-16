@@ -25,6 +25,7 @@ class EditArticle extends Component
     public $status;
     public $category_id;
     public $old_thumbnail;
+    public $is_featured = false;
 
     public $categories = []; 
     public $users = []; 
@@ -32,6 +33,7 @@ class EditArticle extends Component
     protected $listeners = [
         'open-edit-article' => 'open',
         'trix-updated' => 'updateContent',
+        'article-category-added' => 'refreshCategories',
     ];
 
     public function updateContent($value)
@@ -39,6 +41,22 @@ class EditArticle extends Component
     $this->content = $value;
     }
     
+    public function mount()
+    {
+        $this->refreshCategories();
+        $this->refreshUsers();
+    }
+    
+    public function refreshCategories()
+    {
+        $this->categories = BlogCategory::orderBy('category')->get();
+    }
+
+    public function refreshUsers()
+    {
+        $this->users = User::orderBy('name')->get();
+    }
+
     protected function rules()
     {
         return [
@@ -49,6 +67,7 @@ class EditArticle extends Component
             'thumbnail' => 'nullable|image|max:512',
             'status' => 'required|in:draft,published',
             'category_id' => 'required|exists:blog_categories,id',
+            'is_featured' => 'boolean',
         ];
     }
 
@@ -65,6 +84,7 @@ class EditArticle extends Component
         $this->status = $article->status;
         $this->category_id = $article->category_id;
         $this->old_thumbnail = $article->thumbnail;
+        $this->is_featured = $article->is_featured;
     
         $this->open = true;
         $this->dispatch('trix-load', content: $this->content);
@@ -79,6 +99,16 @@ class EditArticle extends Component
     {
         $this->validate();
 
+        if ($this->is_featured) {
+            $featuredCount = Blog::where('is_featured', true)
+                ->where('id', '!=', $this->articleId)
+                ->count();
+            
+            if ($featuredCount >= 4) {
+                $this->addError('is_featured', 'Maksimal hanya 4 artikel yang bisa menjadi featured. Hapus featured dari artikel lain terlebih dahulu.');
+                return;
+            }
+        }
         $thumbnailPath = $this->old_thumbnail;
 
         if ($this->thumbnail) {
@@ -97,6 +127,7 @@ class EditArticle extends Component
             'content' => $this->content,
             'thumbnail' => $thumbnailPath,
             'status' => $this->status,
+            'is_featured' => $this->is_featured,
             'slug' => Str::slug($this->title),
             'category_id' => $this->category_id,
         ]);
@@ -105,9 +136,27 @@ class EditArticle extends Component
         $this->close();
     }
 
+    public function hydrate()
+    {
+        $this->refreshCategories();
+    }
+
     public function close()
     {
-        $this->reset();
+        $this->reset([
+            'articleId',
+            'user_id',
+            'title',
+            'short_description',
+            'reading_time',
+            'content',
+            'thumbnail',
+            'status',
+            'is_featured',
+            'category_id',
+            'old_thumbnail',
+        ]);
+
         $this->open = false;
     }
 

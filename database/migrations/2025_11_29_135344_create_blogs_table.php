@@ -22,6 +22,7 @@ return new class extends Migration
             $table->enum('status', ['draft', 'published'])->default('draft');
             $table->boolean('is_featured')->default(false);
             $table->string('slug')->unique();
+            $table->unsignedBigInteger('views')->default(0);
             $table->foreignId('category_id')->constrained('blog_categories');
             $table->timestamps();
         });

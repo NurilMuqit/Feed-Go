@@ -61,52 +61,35 @@
         </div>
 
         <div class="grid grid-cols-2 gap-4">
-
-            <div class="relative rounded-xl overflow-hidden h-60 w-50 place-self-end">
-                <img src="/images/Produk1.png" class="w-full h-full object-cover" />
-                <div class="absolute inset-0 bg-black/40"></div>
-                <span class="absolute top-3 left-3 bg-[#2D5016] text-white text-xs px-3 py-1 rounded-full">
-                    INFORMASI
+            @forelse($featuredArticles as $index => $article)
+            @php
+                $badgeColor = match(strtoupper($article->category->category)) {
+                    'INFORMASI' => 'bg-[#2563EB]',
+                    'TIPS' => 'bg-[#EAAA00]',
+                    'EDUKASI' => 'bg-[#2E7D32]',
+                    default => 'bg-gray-500'
+                };
+            @endphp
+            <a href="{{ route ('article.show', $article->slug) }}" class="relative rounded-xl overflow-hidden group 
+                {{ $index == 0 ? 'h-60 w-50 place-self-end' : '' }}
+                {{ $index == 1 ? 'h-40 w-60 place-self-start self-end' : '' }}
+                {{ $index == 2 ? 'h-40 w-60 place-self-end self-start' : '' }}
+                {{ $index == 3 ? 'h-60 w-50 place-self-start' : '' }}">
+                <img src="{{ asset('storage/' . $article->thumbnail) }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="{{ $article->title }}"/>
+                <div class="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors duration-300"></div>
+                <span class="absolute top-3 left-3 {{ $badgeColor }} text-white text-xs px-3 py-1 rounded-full">
+                    {{ $article->category->category }}
                 </span>
                 <p class="absolute bottom-3 left-3 right-3 text-white text-sm font-semibold">
-                    Kandungan Pakan Udang Terbaik
+                    {{ $article->title }}
                 </p>
+            </a>
+            @empty
+            <div class="col-span-2 text-center py-10 text-gray-500">
+                <p>Belum ada artikel</p>
             </div>
-
-            <div class="relative rounded-xl overflow-hidden h-40 w-60 place-self-start self-end">
-                <img src="/images/artikel2.jpg" class="w-full h-full object-cover" />
-                <div class="absolute inset-0 bg-black/40"></div>
-                <span class="absolute top-3 left-3 bg-[#F4B000] text-white text-xs px-3 py-1 rounded-full">
-                    TIPS
-                </span>
-                <p class="absolute bottom-3 left-3 right-3 text-white text-sm font-semibold">
-                    Cara Memilih Pakan Udang
-                </p>
-            </div>
-
-            <div class="relative rounded-xl overflow-hidden h-40 w-60 place-self-end self-start">
-                <img src="/images/artikel3.jpg" class="w-full h-full object-cover" />
-                <div class="absolute inset-0 bg-black/40"></div>
-                <span class="absolute top-3 left-3 bg-[#2D5016] text-white text-xs px-3 py-1 rounded-full">
-                    EDUKASI
-                </span>
-                <p class="absolute bottom-3 left-3 right-3 text-white text-sm font-semibold">
-                    Perbedaan Pakan Udang dan Pakan Kambing
-                </p>
-            </div>
-
-            <div class="relative rounded-xl overflow-hidden h-60 w-50 place-self-start">
-                <img src="/images/artikel4.jpg" class="w-full h-full object-cover" />
-                <div class="absolute inset-0 bg-black/40"></div>
-                <span class="absolute top-3 left-3 bg-[#F4B000] text-white text-xs px-3 py-1 rounded-full">
-                    TIPS
-                </span>
-                <p class="absolute bottom-3 left-3 right-3 text-white text-sm font-semibold">
-                    Kesalahan Pemberian Pakan Udang
-                </p>
-            </div>
+            @endforelse
         </div>
-
     </div>
 </section>
 
@@ -118,102 +101,80 @@
     <div class="max-w-6xl mx-auto bg-[#F5F5F5] rounded-3xl relative z-20 p-10 text-center grid lg:grid-cols-3 grid-cols-1 gap-8 items-sretch">
 
         <div class="lg:col-span-2 grid md:grid-cols-2 auto-rows-min gap-6">
+            @foreach($popularArticles as $index => $article)
+            @php
+                $badgeColor = match(strtoupper($article->category->category)) {
+                    'INFORMASI' => 'bg-[#2563EB]',
+                    'TIPS' => 'bg-[#EAAA00]',
+                    'EDUKASI' => 'bg-[#2E7D32]',
+                    default => 'bg-gray-500'
+                };
+            @endphp
 
-            <div class="bg-white rounded-xl overflow-hidden border shadow-sm row-span-2">
-                <div class="relative h-72">
-                    <img src="/images/artikel1.jpg" class="w-full h-full object-cover">
-                    <span class="absolute top-3 left-3 bg-[#F4B000] text-white text-xs px-3 py-1 rounded-full">
-                        TIPS
+            <a href="{{ route('article.show', $article->slug) }}" 
+               class="bg-white rounded-xl overflow-hidden border shadow-sm hover:shadow-lg transition 
+                      {{ $index == 0 ? 'row-span-2' : '' }}">
+
+                <div class="relative {{ $index == 0 ? 'h-72' : 'h-52' }}">
+                    <img src="{{ asset('storage/' . $article->thumbnail) }}" 
+                         class="w-full h-full object-cover" 
+                         alt="{{ $article->title }}">
+
+                    <span class="absolute top-3 left-3 {{ $badgeColor }} text-white text-xs px-3 py-1 rounded-full">
+                        {{ strtoupper($article->category->category) }}
                     </span>
                 </div>
             
                 <div class="p-5">
-                    <h3 class="font-semibold text-gray-800 mb-2">
-                        Pakan Berbasis Riset: Kesalahan Pemberian Pakan Udang
+                    <h3 class="font-semibold text-gray-800 mb-2 line-clamp-2">
+                        {{ $article->title }}
                     </h3>
                 
-                    <p class="text-sm text-gray-600 mb-4">
-                        Kesalahan umum dalam pemberian pakan udang yang sering
-                        menurunkan pertumbuhan dan efisiensi pakan.
+                    <p class="text-sm text-gray-600 mb-4 line-clamp-3">
+                        {{ $article->short_description }}
                     </p>
                 
                     <div class="flex items-center justify-between text-sm text-gray-500">
-                        <span>01 Jun 2025</span>
-                        <a href="#" class="text-[#F4B000] font-medium">Baca Artikel →</a>
+                        <span class="flex items-center gap-2"> <x-svg.calendar-icon class="text-[#2D5016] w-5 h-5"/> {{ $article->created_at->format('d M Y') }} </span>
+                        <span class="text-[#F4B000] font-medium">Lihat Artikel →</span>
                     </div>
                 </div>
-            </div>
-            
-            <div class="bg-white rounded-xl overflow-hidden border shadow-sm">
-                <div class="relative h-52">
-                    <img src="/images/artikel2.jpg" class="w-full h-full object-cover">
-                    <span class="absolute top-3 left-3 bg-[#F4B000] text-white text-xs px-3 py-1 rounded-full">
-                        TIPS
-                    </span>
-                </div>
-            
-                <div class="p-5">
-                    <h3 class="font-semibold text-gray-800 mb-2">
-                        Pakan Berbasis Riset: Cara Memilih Pakan Udang
-                    </h3>
-                
-                    <p class="text-sm text-gray-600 mb-4">
-                        Panduan praktis memilih pakan udang yang tepat dan aman.
-                    </p>
-                
-                    <div class="flex items-center justify-between text-sm text-gray-500">
-                        <span>07 Jun 2025</span>
-                        <a href="#" class="text-[#F4B000] font-medium">Baca Artikel →</a>
-                    </div>
-                </div>
-            </div>
-            
+            </a>
+            @endforeach
         </div>
 
         <div class="flex flex-col h-full">
 
-            <div class="bg-[#EAF4E4] rounded-xl p-5">
+            <div class="bg-[#D2EAC4] rounded-xl p-5">
                 <h4 class="font-semibold text-[#2D5016] mb-4">
-                    Topik Sedang Dibahas
+                    Topik Artikel Saat Ini
                 </h4>
 
                 <div class="space-y-4">
-
-                    <div class="flex gap-3">
-                        <img src="/images/artikel1.jpg" class="w-14 h-14 rounded-lg object-cover">
-                        <div>
-                            <p class="text-sm font-medium text-gray-800">
-                                Kandungan Pakan Udang Terbaik
+                    @foreach($trendingArticles as $article)
+                        @php
+                            $badgeColor = match(strtoupper($article->category->category)) {
+                                'INFORMASI' => '#2563EB',
+                                'TIPS' => '#EAAA00',
+                                'EDUKASI' => '#2E7D32',
+                                default => '#6B7280'
+                            };
+                        @endphp
+                    <a href="{{ route('article.show', $article->slug) }}" class="flex gap-3 hover:bg-white/50 p-2 rounded-lg transition"> 
+                        <div class="text-left flex-1">
+                            <p class="text-xs font-medium text-[#6B7280]">
+                                {{ $article->title }}
                             </p>
-                            <span class="text-xs text-gray-500">
-                                05 Jun 2025 · Baca Artikel →
+                            <span class="text-xs text-gray-500 flex items-center gap-1">
+                                <x-svg.calendar-icon class="text-[#515A6CB2] w-4 h-4"/> {{ $article->created_at->format('d M Y') }} · Lihat Artikel →
                             </span>
                         </div>
-                    </div>
-
-                    <div class="flex gap-3">
-                        <img src="/images/artikel2.jpg" class="w-14 h-14 rounded-lg object-cover">
-                        <div>
-                            <p class="text-sm font-medium text-gray-800">
-                                Perbedaan Pakan Udang dan Pakan Kambing
-                            </p>
-                            <span class="text-xs text-gray-500">
-                                05 Jun 2025 · Baca Artikel →
-                            </span>
+                        <div class="relative">
+                            <img src="{{ asset('storage/' . $article->thumbnail) }}" class="w-14 h-14 rounded-lg object-cover">
+                            <span class="absolute -top-2 left-0 text-[9px] text-white px-2 py-0.5 rounded-full z-10" style="background-color: {{ $badgeColor }}">{{ strtoupper($article->category->category) }}</span>
                         </div>
-                    </div>
-
-                    <div class="flex gap-3">
-                        <img src="/images/artikel3.jpg" class="w-14 h-14 rounded-lg object-cover">
-                        <div>
-                            <p class="text-sm font-medium text-gray-800">
-                                Kesalahan Umum dalam Pemberian Pakan Udang
-                            </p>
-                            <span class="text-xs text-gray-500">
-                                05 Jun 2025 · Baca Artikel →
-                            </span>
-                        </div>
-                    </div>
+                    </a>
+                    @endforeach
                 </div>
             </div>
 

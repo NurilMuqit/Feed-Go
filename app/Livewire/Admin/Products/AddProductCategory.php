@@ -38,7 +38,7 @@ class AddProductCategory extends Component
         $this->validate();
 
         ProductCategory::create([
-            'category' => $this->category,
+            'category' => strtoupper($this->category),
         ]);
 
         $this->dispatch('product-category-added');
