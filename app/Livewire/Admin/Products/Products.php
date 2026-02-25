@@ -27,7 +27,7 @@ class Products extends Component
         'product-updated' => '$refresh',
         'product-deleted' => '$refresh',
     ];
-
+    
     public function updatingSearch()
     {   
         $this->resetPage();
@@ -52,7 +52,7 @@ class Products extends Component
                   ->orWhere('product_description', 'like', '%' . $this->search . '%');
             })
             ->orderBy($this->sortBy, $this->sortDirection)
-            ->paginate(10);
+            ->paginate(5);
     }
     
     public function render()

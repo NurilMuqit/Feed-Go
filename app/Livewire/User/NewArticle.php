@@ -16,6 +16,11 @@ class NewArticle extends Component
 
     protected $queryString = ['selectedCategory'];
 
+    public function paginationView()
+    {
+        return 'livewire.pagination.custom-pagination';
+    }   
+    
     public function selectCategory($categoryId)
     {
         $this->selectedCategory = $categoryId;

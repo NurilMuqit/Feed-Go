@@ -6,7 +6,7 @@
             <h1 class="font-semibold text-3xl">Produk FeedGo</h1>
             <span class="font-light">Kelola seluruh produk pakan FeedGo</span>
         </div>
-        <div class="relative flex-1 flex flex-col rounded-xl border border-neutral-200 dark:border-neutral-700">
+        <div class="relative flex flex-col rounded-xl border border-neutral-200 dark:border-neutral-700">
 
             <livewire:admin.products.products />
             <livewire:admin.products.edit-product />

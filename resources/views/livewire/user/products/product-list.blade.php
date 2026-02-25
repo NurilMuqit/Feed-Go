@@ -113,5 +113,7 @@
         </div>
       @endif
     </div>
-
+    <div class="mt-6">
+      {{ $products->links(data: ['scrollTo' => false]) }}
+    </div>
 </div>

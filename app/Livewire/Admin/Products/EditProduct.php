@@ -6,6 +6,7 @@ use Livewire\Component;
 use Livewire\WithFileUploads;
 use App\Models\Product;
 use App\Models\ProductCategory;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
 class EditProduct extends Component

@@ -6,7 +6,7 @@
             <h1 class="font-semibold text-3xl">Artikel FeedGo</h1>
             <span class="font-light">Kelola artikel edukasi, tips, dan informasi seputar pakan ternak</span>
         </div>
-        <div class="relative flex-1 flex flex-col rounded-xl border border-neutral-200 dark:border-neutral-700">
+        <div class="relative flex flex-col rounded-xl border border-neutral-200 dark:border-neutral-700">
             <div class="shrink-0 rounded-t-xl bg-white dark:bg-neutral-700 shadow-sm
                        p-4 flex flex-col gap-4
                        md:flex-row md:items-center md:justify-between">
@@ -20,8 +20,8 @@
                         />
                     
                         <div class="flex items-center gap-2 font-medium">
-                            <span class="text-sm text-black dark:text-white">Daftar artikel</span>
-                            <span class="text-xs text-gray-400">{{ $articles->count() }} Artikel</span>
+                            <span class="text-sm text-black dark:text-white">Daftar Artikel</span>
+                            <span class="text-xs text-gray-400">{{ $articles->count() }} artikel</span>
                         </div>
                     </div>
                 

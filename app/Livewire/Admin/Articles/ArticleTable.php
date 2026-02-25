@@ -18,13 +18,6 @@ class ArticleTable extends Component
         'article-deleted' => '$refresh',
     ];
 
-    public function getArticlesProperty()
-    {
-        return Blog::with('category')
-        
-            ->paginate(5);
-    }
-
     public function updateStatus($articleId, $status)
     {
     if (! in_array($status, ['draft', 'published'])) {
@@ -40,6 +33,12 @@ class ArticleTable extends Component
 
     public function render()
     {
-        return view('livewire.admin.articles.article-table');
+        $articles = Blog::with(['category', 'user'])
+            ->latest()
+            ->paginate(5);
+
+        return view('livewire.admin.articles.article-table', [
+            'articles' => $articles
+        ]);
     }
 }

@@ -32,6 +32,7 @@ class AddProduct extends Component
         'open-add-product' => 'open',
         'close-product-modal' => 'close',
         'trix-updated-product_description' => 'setProductDescription',
+        'product-category-added' => 'refreshCategories',
     ];
 
     protected $rules = [
@@ -60,7 +61,7 @@ class AddProduct extends Component
 
     public function mount()
     {
-        $this->refreshCategories();
+        $this->categories= ProductCategory::orderBy('category')->get();
     }
 
     public function refreshCategories()

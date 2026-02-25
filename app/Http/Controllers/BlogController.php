@@ -26,8 +26,22 @@ class BlogController extends Controller
             
             $featuredArticles = $featuredArticles->merge($additionalArticles);
         }
+
         $popularArticles = Blog::with(['category','user'])->where('status', 'published')->orderBy('views', 'desc')->take(2)->get();
-        $trendingArticles = Blog::with(['category','user'])->where('status', 'published')->where('created_at', '>=', now()->subDays(7   ))->orderBy('views', 'desc')->take(3)->get();
+        $trendingArticles = Blog::with(['category','user'])->where('status', 'published')->where('created_at', '>=', now()->subDays(7))->orderBy('views', 'desc')->take(3)->get();
+        if ($trendingArticles->count() < 3) {
+            $remaining = 3 - $trendingArticles->count();
+            $additionalTrending = Blog::with(['category', 'user'])
+                ->where('status', 'published')
+                ->where('created_at', '>=', now()->subDays(30))
+                ->whereNotIn('id', $trendingArticles->pluck('id'))
+                ->orderBy('views', 'desc')
+                ->take($remaining)
+                ->get();
+            
+            $trendingArticles = $trendingArticles->merge($additionalTrending);
+        }
+        
         return view('layouts.blogs', compact('popularArticles', 'trendingArticles', 'featuredArticles'));
     }
 

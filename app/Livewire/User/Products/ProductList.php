@@ -4,17 +4,47 @@ namespace App\Livewire\User\Products;
 
 use Livewire\Component;
 use App\Models\Product;
-use App\models\ProductCategory;
+use App\Models\ProductCategory;
+use Livewire\WithPagination;
 
 class ProductList extends Component
 {   
+    use WithPagination;
+
     public $search = '';
     public $selectedCategory = null;
     public $sortBy = '';
 
+    protected $queryString = [
+        'search' => ['except' => ''],
+        'selectedCategory' => ['except' => null],
+        'sortBy' => ['except' => ''],
+    ];
+
+    public function paginationView()
+    {
+        return 'livewire.pagination.custom-pagination';
+    }   
+
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
+
+    public function updatingSelectedCategory()
+    {
+        $this->resetPage();
+    }
+
+    public function updatingSortBy()
+    {
+        $this->resetPage();
+    }
+
     public function resetFilter()
     {
         $this->reset(['search', 'selectedCategory', 'sortBy']);
+        $this->resetPage();
     }
 
     public function render()
@@ -47,7 +77,7 @@ class ProductList extends Component
         }
 
         return view('livewire.user.products.product-list', [
-            'products' => $products->get(),
+            'products' => $products->latest()->paginate(8),
             'categories' => ProductCategory::orderBy('category')->get(),
         ]);
     }

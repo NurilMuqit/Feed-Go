@@ -116,10 +116,7 @@
         </div>
         @endforelse
     </div>
-
-    @if($articles->hasPages())
-    <div class="px-10 pb-10">
+    <div class="m-6">
         {{ $articles->links() }}
     </div>
-    @endif
 </div>

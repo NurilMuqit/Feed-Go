@@ -12,8 +12,8 @@
                 />
             
                 <div class="flex items-center gap-2 font-medium">
-                    <span class="text-sm text-black dark:text-white">Daftar produk</span>
-                    <span class="text-xs text-gray-400">{{ $this->products->total() }} Produk</span>
+                    <span class="text-sm text-black dark:text-white">Daftar Produk</span>
+                    <span class="text-xs text-gray-400">{{ $this->products->total() }} produk</span>
                 </div>
             </div>
         
@@ -198,7 +198,7 @@
                 @endforelse
             </tbody>
         </table>
-        <div class="mt-4 px-4">
+        <div class="m-6">
         {{ $this->products->links() }}
         </div>
     </div>
