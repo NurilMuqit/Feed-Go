@@ -18,6 +18,27 @@ class Product extends Model
         return $this->created_at && $this->created_at->diffInDays(now()) < 7;
     }
 
+    public function carts()
+    {
+        return $this->hasMany(Cart::class);
+    }
+
+    public function orderDetails()
+    {
+        return $this->hasMany(OrderDetail::class);
+    }
+
+    public function reviews()
+    {
+        return $this->hasManyThrough(
+            Review::class, OrderDetail::class,
+            'product_id',
+            'order_detail_id',
+            'id',
+            'id'
+        );
+    }
+
     public function getDiscountPercentageAttribute()
     {
         if ($this->product_discount_price && $this->product_price > 0) {
@@ -30,5 +51,10 @@ class Product extends Model
     public function getHasDiscountAttribute()
     {
         return $this->product_discount_price && $this->product_discount_price < $this->product_price;
+    }
+
+    public function getFinalPriceAttribute()
+    {
+        return $this->has_discount ? $this->product_discount_price : $this->product_price;
     }
 }

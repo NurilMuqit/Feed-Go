@@ -1,40 +1,47 @@
 @section('title', 'Registrasi')
 
 <x-layouts.auth>
-    <div class="flex justify-between w-full">
-        {{-- <x-auth-header :title="__('Create an account')" :description="__('Enter your details below to create your account')" /> --}}
+    <div class="flex flex-col lg:flex-row justify-between w-full">
 
-        <!-- Session Status -->
+        {{-- Session Status --}}
         <x-auth-session-status class="text-center" :status="session('status')" />
-        
-        <section class="w-1/2 flex flex-col justify-start pl-20 text-white space-y-3 pt-32">
-            <p class="text-4xl font-bold mb-0">
+
+        <section class="w-full lg:w-1/2 flex flex-col justify-start px-6 sm:px-10 lg:pl-20 lg:pr-10 pt-10 sm:pt-16 lg:pt-32 text-white space-y-3">
+            <p class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-0 leading-tight">
                 Daftar ke <span class="text-yellow-400">Akun FeedGo</span>
             </p>
 
-            <p class="text-2xl font-bold mb-0">
+            <p class="text-lg sm:text-xl lg:text-2xl font-bold mb-0 leading-snug">
                 Mulai akses layanan FeedGo dengan membuat akun baru.
             </p>
-        
-            <p class="text-sm text-gray-300 mb-0 mt-3">Solusi pakan ternak berbasis riset untuk produktivitas berkelanjutan</p>
-            <ul class="flex gap-6 text-sm text-gray-300 mt-0">
+
+            <p class="text-sm text-gray-300 mb-0 mt-3 leading-relaxed max-w-xl">Solusi pakan ternak berbasis riset untuk produktivitas berkelanjutan</p>
+            <ul class="flex flex-wrap gap-x-4 sm:gap-6 gap-y-1 text-sm text-gray-300 mt-0">
                 <li>• Teruji</li>
                 <li>• Aman</li>
                 <li>• Berbasis Riset</li>
             </ul>
         </section>
 
-        <section class="w-1/2 flex items-start justify-end pr-30 pt-32">
+        <section class="w-full lg:w-1/2 flex items-start justify-center lg:justify-end px-6 sm:px-10 lg:pr-30 pt-8 sm:pt-10 lg:pt-32 pb-10 lg:pb-0">
 
-            <div class="w-[350px] space-y-6">
-                <form method="POST" action="{{ route('register.store') }}" class="flex flex-col gap-6">
+            <div class="w-full max-w-[350px] space-y-6">
+                @if ($errors->any())
+                    <div class="rounded-xl bg-red-500/10 border border-red-400/30 p-3">
+                        <p class="text-sm text-red-400">
+                            {{ $errors->first() }}
+                        </p>
+                    </div>
+                @endif
+
+                <form method="POST" action="{{ route('register.store') }}" class="flex flex-col gap-5 sm:gap-6">
                 @csrf
 
                     {{-- name --}}
                     <div class="flex items-center gap-3 rounded-xl">
 
-                        <flux:icon.user class="text-white w-5 h-5" />
-                    
+                        <flux:icon.user class="text-white w-5 h-5 shrink-0" />
+
                         <flux:input
                             name="name"
                             :value="old('name')"
@@ -42,9 +49,9 @@
                             required
                             autocomplete="name"
                             placeholder="Masukkan nama anda"
-                            class="flex-1 bg-transparent border-none shadow-none outline-none px-0"
+                            class="dark w-full"
                         />
-                    
+
                     </div>
 
                     {{-- Email --}}
@@ -59,6 +66,7 @@
                             required
                             autocomplete="email"
                             placeholder="masukkan email anda"
+                            class="dark w-full"
                         />
                     </div>
 
@@ -73,6 +81,7 @@
                             autocomplete="new-password"
                             :placeholder="__('Masukkan sandi anda')"
                             viewable
+                            class="dark w-full"
                         />
                     </div>
 
@@ -87,6 +96,7 @@
                             autocomplete="new-password"
                             :placeholder="__('Konfirmasi sandi anda')"
                             viewable
+                            class="dark w-full"
                         />
                     </div>
 
@@ -97,9 +107,9 @@
                    </div>
                 </form>
 
-                <div class="space-x-1 rtl:space-x-reverse text-center text-sm text-zinc-600 dark:text-zinc-400">
+                <div class="space-x-1 rtl:space-x-reverse text-center text-sm text-zinc-400">
                     <span>Sudah punya akun?</span>
-                    <flux:link class="text-yellow-400 hover:text-yellow-200" :href="route('login')" wire:navigate>Masuk</flux:link>
+                    <flux:link class="text-yellow-400 dark" :href="route('login')" wire:navigate>Masuk</flux:link>
                 </div>
             </div>
 

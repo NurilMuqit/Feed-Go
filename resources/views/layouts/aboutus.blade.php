@@ -31,7 +31,7 @@
 
     <div class="grid md:grid-cols-2 grid-cols-1 gap-5 items-center">
 
-        <div class="flex flex-col justify-center p-5"> 
+        <div class="flex flex-col justify-center p-5">
             <p class="text-[#2D5016] text-left text-lg font-semibold">
                 FeedGo hadir untuk membantu peternak meningkatkan produktivitas melalui pakan berkualitas tinggi, formulasi terukur, dan bahan baku lokal terverifikasi.
             </p>
@@ -49,12 +49,12 @@
                     <span class="text-xl">Lokal</span>
                 </div>
             </div>
-            <button class="flex bg-[#EAAA00] items-center rounded-lg text-white mt-6 px-4 py-2 font-semibold w-fit">
+            <a href="{{ route('contact') }}" class="flex bg-[#EAAA00] items-center rounded-lg text-white mt-6 px-4 py-2 font-semibold w-fit hover:bg-[#FFC11E] hover:scale-105 active:scale-95 transition shadow-lg">
                 <svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 38 38" fill="none">
                     <path d="M14.2562 5.40868C13.3506 4.12618 12.0966 3.54826 10.7666 3.56251C9.50464 3.57518 8.27597 4.1151 7.24997 4.83393C6.20348 5.57069 5.31115 6.50497 4.62322 7.58418C3.97405 8.61176 3.50539 9.82618 3.56872 11.0121C3.8743 16.7168 7.08372 22.8127 11.5915 27.3236C16.0961 31.8298 22.1111 34.9616 28.1848 34.3631C29.3755 34.2459 30.5012 33.6395 31.4211 32.8668C32.3726 32.0609 33.15 31.0697 33.7059 29.9535C34.2442 28.8578 34.5656 27.5943 34.3883 26.3641C34.2046 25.0816 33.4874 23.9353 32.1685 23.1753C31.8952 23.0167 31.6249 22.8531 31.3578 22.6844C31.1203 22.5372 30.867 22.3773 30.5598 22.1936C29.9324 21.8068 29.2704 21.4792 28.5822 21.2151C27.8745 20.957 27.0654 20.7876 26.2231 20.9032C25.3506 21.0235 24.54 21.4352 23.8386 22.173C23.2986 22.743 22.5038 22.9203 21.386 22.5973C20.2491 22.268 18.9698 21.451 17.8583 20.3458C16.7468 19.2438 15.9061 17.955 15.5466 16.7913C15.192 15.6386 15.3487 14.7915 15.9029 14.2073C16.6518 13.4188 17.0508 12.5416 17.1347 11.6138C17.2171 10.7113 16.9922 9.8626 16.6708 9.1216C16.1895 8.01485 15.3725 6.91443 14.7328 6.05626C14.572 5.84171 14.4136 5.62531 14.2578 5.4071" fill="white"/>
                 </svg>
                 Hubungi Kami
-            </button>
+            </a>
         </div>
 
         <div class="flex justify-center">
@@ -255,7 +255,7 @@
 
                     <p class="text-md mb-3">
                         Startup Research-Based FeedGo<br>
-                        <span class="text-[13px]">BT-STE Universitas Hasanuddin</span>
+                        <span class="text-[13px]">IBT-STP Universitas Hasanuddin</span>
                     </p>
 
                     <div class="w-20 h-20 mx-auto rounded-full bg-[#2E7D32] flex items-center justify-center mb-4">
@@ -287,7 +287,7 @@
 
                     <p class="text-md mb-3">
                         Startup Research-Based FeedGo<br>
-                        <span class="text-[13px]">BT-STE Universitas Hasanuddin</span>
+                        <span class="text-[13px]">IBT-STP Universitas Hasanuddin</span>
                     </p>
 
                     <div class="w-20 h-20 mx-auto rounded-full bg-[#2E7D32] flex items-center justify-center mb-4">
@@ -297,10 +297,10 @@
                     </div>
 
                     <h4 class="font-semibold text-gray-800">
-                        Abdul Jamil A.A
+                        Muh. Ridwan B
                     </h4>
                     <p class="text-sm text-gray-500">
-                        Fasilitator
+                        Investor Pakan Udang
                     </p>
                 </div>
             </div>
@@ -310,7 +310,7 @@
 
                     <p class="text-md mb-3">
                         Startup Research-Based FeedGo<br>
-                        <span class="text-[13px]">BT-STE Universitas Hasanuddin</span>
+                        <span class="text-[13px]">IBT-STP Universitas Hasanuddin</span>
                     </p>
 
                     <div class="w-20 h-20 mx-auto rounded-full bg-[#2E7D32] flex items-center justify-center mb-4">
@@ -320,10 +320,10 @@
                     </div>
 
                     <h4 class="font-semibold text-gray-800">
-                        Abdul Jamil A.A
+                        Ihzanul
                     </h4>
                     <p class="text-sm text-gray-500">
-                        Fasilitator
+                        Investor Pakan Kambing
                     </p>
                 </div>
             </div>
@@ -340,7 +340,7 @@
 
                     <p class="text-md mb-3">
                         Startup Research-Based FeedGo<br>
-                        <span class="text-[13px]">BT-STE Universitas Hasanuddin</span>
+                        <span class="text-[13px]">IBT-STP Universitas Hasanuddin</span>
                     </p>
 
                     <div class="w-20 h-20 mx-auto rounded-full bg-[#2E7D32] flex items-center justify-center mb-4">
@@ -350,10 +350,10 @@
                     </div>
 
                     <h4 class="font-semibold text-gray-800">
-                        Abdul Jamil A.A
+                        Muh. Rifky Aqid
                     </h4>
                     <p class="text-sm text-gray-500">
-                        Fasilitator
+                        CEO (Chief Executive Officer)
                     </p>
                 </div>
             </div>
@@ -363,7 +363,7 @@
 
                     <p class="text-md mb-3">
                         Startup Research-Based FeedGo<br>
-                        <span class="text-[13px]">BT-STE Universitas Hasanuddin</span>
+                        <span class="text-[13px]">IBT-STP Universitas Hasanuddin</span>
                     </p>
 
                     <div class="w-20 h-20 mx-auto rounded-full bg-[#2E7D32] flex items-center justify-center mb-4">
@@ -373,10 +373,10 @@
                     </div>
 
                     <h4 class="font-semibold text-gray-800">
-                        Abdul Jamil A.A
+                        Andi Aliyah Tenri
                     </h4>
                     <p class="text-sm text-gray-500">
-                        Fasilitator
+                        CMO (Chief Marketing Officer)
                     </p>
                 </div>
             </div>
@@ -386,7 +386,7 @@
 
                     <p class="text-md mb-3">
                         Startup Research-Based FeedGo<br>
-                        <span class="text-[13px]">BT-STE Universitas Hasanuddin</span>
+                        <span class="text-[13px]">IBT-STP Universitas Hasanuddin</span>
                     </p>
 
                     <div class="w-20 h-20 mx-auto rounded-full bg-[#2E7D32] flex items-center justify-center mb-4">
@@ -396,10 +396,10 @@
                     </div>
 
                     <h4 class="font-semibold text-gray-800">
-                        Abdul Jamil A.A
+                        -
                     </h4>
                     <p class="text-sm text-gray-500">
-                        Fasilitator
+                        CPO (Chief Product Officer)
                     </p>
                 </div>
             </div>
@@ -416,12 +416,12 @@
             <div class="text-start">
                 <h3 class="font-semibold text-xl text-gray-700 ">Lokasi</h3>
                 <div class="w-full h-64 rounded-xl overflow-hidden">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127147.27477395958!2d119.42145894261952!3d-5.207201509639711!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dbefd3abddc814f%3A0x75803b4d36d5abea!2sScience%20Techno%20Park%20Universitas%20Hasanuddin!5e0!3m2!1sid!2sid!4v1769012771404!5m2!1sid!2sid" 
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127147.27477395958!2d119.42145894261952!3d-5.207201509639711!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dbefd3abddc814f%3A0x75803b4d36d5abea!2sScience%20Techno%20Park%20Universitas%20Hasanuddin!5e0!3m2!1sid!2sid!4v1769012771404!5m2!1sid!2sid"
                 width="341" height="256" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
                 </iframe>
                 </div>
             </div>
-            
+
             <div class="col-span-2 flex flex-col h-full">
                 <div class="grid md:grid-cols-2 grid-cols-1 gap-y-8">
 
@@ -440,13 +440,13 @@
                                     <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm5 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm6.5-.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Z"/>
                                 </svg>
                             </div>
-                    
+
                             <div class="w-14 h-14 bg-[#6FA04D] rounded-lg flex items-center justify-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="white" viewBox="0 0 24 24">
                                     <path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2v-3h2v-2.3c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.2l-.3 3h-1.9v7A10 10 0 0 0 22 12Z"/>
                                 </svg>
                             </div>
-                    
+
                             <div class="w-14 h-14 bg-[#6FA04D] rounded-lg flex items-center justify-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="white" viewBox="0 0 24 24">
                                     <path d="M22 5.9c-.8.4-1.6.6-2.5.8a4.3 4.3 0 0 0 1.9-2.4c-.9.6-1.9 1-3 1.2a4.3 4.3 0 0 0-7.3 3v1a12 12 0 0 1-8.8-4.5s-4 9 5 13a12.5 12.5 0 0 1-7 2c9 5 20 0 20-11.5v-.5c.8-.6 1.6-1.4 2.2-2.3Z"/>
@@ -462,14 +462,14 @@
                         </div>
                         <span class="text-sm">Pakan inovatif, Pakan produktif</span>
                     </div>
-                    
+
                     <div class="flex items-center gap-4">
                         <img src="{{ asset('images/FeedGo.webp') }}" alt="Logo FeedGo" class=" h-20"/>
                         <img src="{{ asset('images/Unhas.webp') }}" alt="Logo Unhas" class="ml-4 h-25"/>
                     </div>
                 </div>
             </div>
-        </div>    
+        </div>
     </div>
 </section>
 @endsection

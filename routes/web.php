@@ -11,6 +11,9 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\OrderController;
+use App\Livewire\Admin\Newsletters;
+use App\Http\Controllers\NewsletterController;
 
 Route::get('/', [HomepageController::class, 'index'])->name('beranda');
 Route::get('/artikel', [BlogController::class, 'index'])->name('artikel');
@@ -20,21 +23,34 @@ Route::get('/artikel/{slug}', [BlogController::class, 'show'])->name('article.sh
 Route::get('/tentang-kami', [AboutUsController::class, 'index'])->name('tentangkami');
 Route::get('/kebijakan-privasi',[HomepageController::class, 'privacyPolicy'])->name('privacy.policy');
 Route::get('/syarat-dan-ketentuan',[HomepageController::class, 'termsConditions'])->name('terms.conditions');
+Route::get('/kontak-kami', [HomepageController::class, 'contact'])->name('contact');
+Route::post('/midtrans/notification', [OrderController::class, 'notification']);
 
-Route::middleware(['auth', 'role:admin,superadmin'])->group(function () {
+Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::get('/admin/product', [AdminController::class, 'product'])->name('admin.product');
     Route::get('/admin/order', [AdminController::class, 'order'])->name('admin.order');
-    Route::get('/admin/message', [AdminController::class, 'message'])->name('admin.message');
+    Route::get('/admin/user-profile', [AdminController::class, 'profile'])->name('admin.userprofile');
     Route::get('/admin/delivery', [AdminController::class, 'delivery'])->name('admin.delivery');
-    Route::get('/admin/payment', [AdminController::class, 'payment'])->name('admin.payment');
     Route::get('/admin/report', [AdminController::class, 'report'])->name('admin.report');
     Route::get('/admin/article', [AdminController::class, 'article'])->name('admin.article');
     Route::get('settings/appearance', Appearance::class)->name('appearance.edit');
     Route::get('/admin/sales-data', [AdminController::class, 'getSalesData'])->name('admin.sales-data');
+    Route::get('/admin/order/{invoice_number}',[AdminController::class, 'OrderDetail'])->name('admin.order-detail');
+    Route::get('/admin/delivery/{invoice_number}',[AdminController::class,'OrderShipping'])->name('admin.order-shipping');
+    Route::get('admin/report/{invoice_number}', [AdminController::class, 'ReportDetail'])->name('admin.report-detail');
+    Route::get('admin/user-profile/{id}', [AdminController::class, 'CustomerDetail'])->name('admin.customer-detail');
+    Route::get('admin/newsletter', Newsletters::class)->name('admin.newsletter');
 });
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'role:user', 'verified', 'user.active'])->group(function(){
+    Route::get('/user/cart',[ProductController::class,'indexCart'])->name('user.cart');
+    Route::get('/user/checkout',[ProductController::class,'indexCheckout'])->middleware('cart.not.empty')->name('user.checkout');
+    Route::get('/user/order', [OrderController::class, 'index'])->name('user.orders');
+    Route::get('/user/order/{invoice_number}', [OrderController::class, 'show'])->name('user.order-detail');
+});
+
+Route::middleware(['auth', 'user.active'])->group(function () {
     Route::redirect('settings', 'settings/profile');
 
     Route::get('settings/profile', Profile::class)->name('profile.edit');
@@ -50,3 +66,5 @@ Route::middleware(['auth'])->group(function () {
         )
         ->name('two-factor.show');
 });
+
+Route::get('/newsletter/unsubscribe/{email}', [ NewsletterController::class, 'unsubscribe' ])->name('newsletter.unsubscribe')->middleware('signed');

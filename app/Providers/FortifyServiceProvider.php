@@ -14,6 +14,11 @@ use Laravel\Fortify\Contracts\LoginResponse;
 use App\Http\Responses\LoginResponse as CustomLoginResponse;
 use Laravel\Fortify\Contracts\RegisterResponse;
 use App\Http\Responses\RegisterResponse as CustomRegisterResponse;
+use Laravel\Fortify\Contracts\TwoFactorLoginResponse;
+use App\Http\Responses\TwoFactorLoginResponse as CustomTwoFactorLoginResponse;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
 
 
 class FortifyServiceProvider extends ServiceProvider
@@ -25,6 +30,7 @@ class FortifyServiceProvider extends ServiceProvider
     {
     $this->app->singleton(RegisterResponse::class, CustomRegisterResponse::class);
     $this->app->singleton(LoginResponse::class, CustomLoginResponse::class);
+    $this->app->singleton(TwoFactorLoginResponse::class, CustomTwoFactorLoginResponse::class);
     }
 
     /**
@@ -35,6 +41,23 @@ class FortifyServiceProvider extends ServiceProvider
         $this->configureActions();
         $this->configureViews();
         $this->configureRateLimiting();
+
+        Fortify::authenticateUsing(function (Request $request) {
+
+            $user = User::where('email', $request->email)->first();
+            if (
+                $user &&
+                Hash::check($request->password, $user->password)
+            ) {
+                if ($user->status === 'inactive') {
+                    throw ValidationException::withMessages([
+                        'email' => 'Akun Anda telah dinonaktifkan. Silakan hubungi Admin.',
+                    ]);
+                }
+                return $user;
+            }
+            return null;
+        });
     }
 
     /**
